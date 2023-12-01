@@ -32,11 +32,6 @@ class Main {
 
 		for (String line : input.split("\n")) {
 			List<String> result = extractNumbers(line);
-
-			if (result.size() == 0) {
-				continue;
-			}
-
 			total += Integer.parseInt(numberMap.get(result.get(0)) + numberMap.get(result.get(result.size() - 1)));;
 		}
 
