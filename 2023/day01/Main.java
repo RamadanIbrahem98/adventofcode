@@ -32,9 +32,9 @@ class Main {
 
 		input = input
 		.replaceAll("one", "o1e")
-		.replaceAll("two", "t2e")
+		.replaceAll("two", "t2o")
 		.replaceAll("three", "t3e")
-		.replaceAll("four", "4")
+		.replaceAll("four", "f4r")
 		.replaceAll("five", "5e")
 		.replaceAll("six", "s6")
 		.replaceAll("seven", "s7n")
