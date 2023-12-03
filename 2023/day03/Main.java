@@ -105,6 +105,71 @@ public class Main {
   
   public static int partTwo() {
     int total = 0;
+    long runningTotal = 1;
+    int gearsCount = 0;
+
+    for (int i = 0; i < data.size(); i++) {
+      if (!data.get(i).equals("*")) {
+        continue;
+      }
+
+      if (!(i - length < 0) && data.get(i - length).matches("\\d")) {
+        gearsCount++;
+        int start = getPreviousIdx(i - length);
+        int end = getNextIdx(i - length);
+        runningTotal *= getWholeNumber(start, end);
+      } else if (!(i - length < 0) && !data.get(i - length).matches("\\d")) {
+        if (!(i - length - 1 < 0) && data.get(i - length - 1).matches("\\d")) {
+          gearsCount++;
+          int start = getPreviousIdx(i - length - 1);
+          runningTotal *= getWholeNumber(start, i - length);
+        }
+        
+        if (!(i - length + 1 < 0) && data.get(i - length + 1).matches("\\d")) {
+          gearsCount++;
+          int end = getNextIdx(i - length + 1);
+          runningTotal *= getWholeNumber(i - length + 1, end);
+        }
+      }
+
+      if (i + length < data.size() && data.get(i + length).matches("\\d")) {
+        gearsCount++;
+        int start = getPreviousIdx(i + length);
+        int end = getNextIdx(i + length);
+        runningTotal *= getWholeNumber(start, end);
+      } else if (i + length < data.size() && !data.get(i + length).matches("\\d")) {
+        if (i + length - 1 < data.size() && data.get(i + length - 1).matches("\\d")) {
+          gearsCount++;
+          int start = getPreviousIdx(i + length - 1);
+          runningTotal *= getWholeNumber(start, i + length);
+        }
+        
+        if (i + length + 1 < data.size() && data.get(i + length + 1).matches("\\d")) {
+          gearsCount++;
+          int end = getNextIdx(i + length + 1);
+          runningTotal *= getWholeNumber(i + length + 1, end);
+        }
+      }
+
+      if (!(i - 1 < 0) && data.get(i - 1).matches("\\d")) {
+        gearsCount++;
+        int start = getPreviousIdx(i - 1);
+        runningTotal *= getWholeNumber(start, i);
+      }
+      
+      if (i + 1 < data.size() && data.get(i + 1).matches("\\d")) {
+        gearsCount++;
+        int end = getNextIdx(i + 1);
+        runningTotal *= getWholeNumber(i + 1, end);
+      }
+      
+      if (gearsCount == 2) {
+        total += runningTotal;
+      }
+
+      runningTotal = 1;
+      gearsCount = 0;
+    }
 
     return total;
   }
