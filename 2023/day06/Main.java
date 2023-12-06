@@ -6,30 +6,30 @@ import java.util.stream.Collectors;
 
 class Main {
 	public static void main(String[] args) throws Exception {
-			String input = new String(Files.readAllBytes(Paths.get("input.txt")));
+		String input = new String(Files.readAllBytes(Paths.get("input.txt")));
 
-			String[] timesString = input.split("\n")[0].strip().split(": ")[1].strip().split(" ");
-			String[] distancesString = input.split("\n")[1].strip().split(": ")[1].strip().split(" ");
+		String[] timesString = input.split("\n")[0].strip().split(": ")[1].strip().split(" ");
+		String[] distancesString = input.split("\n")[1].strip().split(": ")[1].strip().split(" ");
 
-			List<Integer> times = new ArrayList<>();
-			List<Integer> distances = new ArrayList<>();
+		List<Integer> times = new ArrayList<>();
+		List<Integer> distances = new ArrayList<>();
 
-			for (String timeString : timesString) {
-				if (!timeString.matches("\\d+")) {
-					continue;
-				}
-				times.add(Integer.parseInt(timeString.strip()));
+		for (String timeString : timesString) {
+			if (!timeString.matches("\\d+")) {
+				continue;
 			}
-			
-			for (String distanceString : distancesString) {
-				if (!distanceString.matches("\\d+")) {
-					continue;
-				}
-				distances.add(Integer.parseInt(distanceString.strip()));
+			times.add(Integer.parseInt(timeString.strip()));
+		}
+		
+		for (String distanceString : distancesString) {
+			if (!distanceString.matches("\\d+")) {
+				continue;
 			}
-			
-			System.out.println("Part One Answer is: " + partOne(times, distances));
-			System.out.println("Part Two Answer is: " + partTwo(times, distances));
+			distances.add(Integer.parseInt(distanceString.strip()));
+		}
+		
+		System.out.println("Part One Answer is: " + partOne(times, distances));
+		System.out.println("Part Two Answer is: " + partTwo(times, distances));
 	}
 
 	public static int partOne(List<Integer> times, List<Integer> distances) {
