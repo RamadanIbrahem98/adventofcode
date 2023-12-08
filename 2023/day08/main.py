@@ -15,7 +15,6 @@ def read_input(file: str = "input.txt"):
     directionsMap[x.strip()] = [e.strip() for e in y[1:-1].split(", ")]
 
 def aToZSteps(end):
-  global sequence
   steps = 0
   while True:
     for i in sequence:
@@ -26,8 +25,6 @@ def aToZSteps(end):
         return steps
 
 def partOne():
-  global sequence
-
   end = 'AAA'
   steps = 0
 
@@ -40,8 +37,6 @@ def partOne():
   return steps
 
 def partTwo():
-  global sequence
-  
   ends = [x for x in directionsMap.keys() if x[-1] == 'A']
   LCMs = [aToZSteps(end) for end in ends]
 
